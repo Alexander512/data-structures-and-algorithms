@@ -18,6 +18,9 @@ public class StaticArrayExample
         var value = array.GetAt(0);
 
         Console.WriteLine($"result of set and get operations: {value}");
+        Console.WriteLine($"length of the array: {array.Length()}");
+
+        array.IterSequence();
     }
 }
 
@@ -37,9 +40,15 @@ public class StaticArray
         Data = new int[_length];
     }
 
-    public int Length => this._length;
+    public int Count => this._length;
 
     public int[] Data { get; set; }
+
+    // The Length method is an O(1) time complexity operation.
+    public int Length()
+    {
+        return this.Count;
+    }
 
     /*
         For both the GetAt and SetAt methods the index will
@@ -59,9 +68,10 @@ public class StaticArray
         this.Data[index] = value;
     }
 
-    public void Print()
+    // The IterSequence method is an O(n) time complexity operation.
+    public void IterSequence()
     {
-        for (int i = 0; i < this.Length; i++)
+        for (int i = 0; i < this.Count; i++)
         {
             Console.WriteLine($"index: {i}\tvalue: {this.Data[i]}");
         }

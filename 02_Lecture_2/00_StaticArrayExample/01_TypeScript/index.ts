@@ -7,27 +7,32 @@ class StaticArray {
     constructor(length: number) {
         if (length < 0) throw new Error('length out of range')
 
-        this.length = length
+        this.count = length
         this.data = new Array(length)
     }
 
-    length: number
+    count: number
     data: number[]
+
+    // Return the length with an O(1) time complexity.
+    length(): number {
+        return this.count
+    }
 
     // Get the value at the given index with an O(1) time complexity.
     getAt(index: number): number {
-        if (index < 0 || index >= this.length) throw new Error('index out of range')
+        if (index < 0 || index >= this.count) throw new Error('index out of range')
         return this.data[index]
     }
 
     // Set the value at the given index with an O(1) time complexity.
     setAt(index: number, value: number): void {
-        if (index < 0 || index >= this.length) throw new Error('index out of range')
+        if (index < 0 || index >= this.count) throw new Error('index out of range')
         this.data[index] = value 
     }
 
-    print(): void {
-        for (let i: number = 0; i < this.length; i++) {
+    iterSequence(): void {
+        for (let i: number = 0; i < this.count; i++) {
             console.log(`index: ${i}\tvalue: ${this.data[i]}`)
         }
     }
@@ -42,3 +47,6 @@ array.setAt(0, 1)
 const result = array.getAt(0)
 
 console.log(`result of setting and getting: ${result}`)
+console.log(`length of the array: ${array.length()}`)
+
+array.iterSequence()
